@@ -15,14 +15,14 @@ namespace NL.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Northwest Labs was founded on strong principles of integrity and high-quality service. We value our customers and look for every opportunity to help their companies succeed.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Reach out to us through email, phone, or stop by our office with any inquiries or requests.";
 
             return View();
         }
