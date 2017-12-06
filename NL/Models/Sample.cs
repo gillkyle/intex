@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace NL.Models
+{
+    [Table("Sample")]
+    public class Sample
+    {
+        [Key]
+        public int SampleID { get; set; }
+        [ForeignKey("Compound")]
+        public int LTNum { get; set; }
+        public virtual Compound Compound { get; set; }
+        public int SequenceCode { get; set; }
+        public float Concentration { get; set; }
+        public float Weight_mg { get; set; }
+
+    }
+}
