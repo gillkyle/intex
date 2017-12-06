@@ -1,0 +1,106 @@
+﻿body {
+    font-family: 'Exo 2', sans-serif;
+}
+
+.jumbo-header {
+    color: #fff;
+}
+
+.custom-nav {
+    background-color: #fafafa;
+    color: #555;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0px 1px 2px rgba(100, 100, 100, 0.49);
+}
+
+.cta {
+    background-color: transparent;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+}
+
+.cta:hover, .cta:active {
+    background-color: rgba(240,240,240,0.5);
+    border: 2px solid #ccc;
+}
+
+.quote {
+    font-size: 24px !important;
+    font-style: italic !important;
+}
+
+.card-set {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-card {
+    flex: 1;
+    padding: 10px;
+    border: 1px #ddd solid;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    margin: 5px;
+}
+
+    .flex-card:hover {
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25), 0 5px 10px rgba(0,0,0,0.22);
+    }
+
+textarea {
+    max-width: none;
+}
+
+.question-section {
+    margin-bottom: 20px;
+}
+
+.question {
+    font-size: 20px;
+}
+
+.answer {
+    color: rgba(0,0,0,0.55);
+}
+
+.answer-details {
+    color: rgba(0,0,0,0.35);
+    font-style: italic;
+}
+
+.contact-form {
+    margin: 0 15px 0 15px;
+}
+
+/* Bootstrap overrids */
+.row {
+    margin: 50px 0px;
+}
+
+.jumbotron {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.25)), url("https://images.unsplash.com/photo-1486825586573-7131f7991bdd?auto=format&fit=crop&w=334&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D");
+    background-size: cover;
+    background-position: center;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    filter: greyscale(50%);
+}
+
+.full-width {
+    margin: 30px 0px !important;
+    border-radius: 2px !important;
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+}
+
+.navbar-brand:hover, .navbar-inverse .navbar-nav > li > a:hover {
+    color: #333 !important;
+}
+
+.breadcrumb {
+    margin-top: 10px;
+    background-color: transparent;
+}

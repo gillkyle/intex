@@ -2,30 +2,44 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="jumbotron jumbotron-fluid text-center full-width">
+    <div class="jumbo-header">
+        <h1>Northwest Labs Pharmaceutical</h1>
+        <p class="lead">Get the best service and assay results online</p>
+        <p>@Html.ActionLink("GET STARTED", "Index", "Missions", null, new { @class = "btn btn-primary cta" })</p>
+    </div>
 </div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>
+                <i class="fa fa-search"></i> Research
+            </h2>
+            <p>
+                Learn about tests and make decisions on how to test your compound.
+            </p>
+            <p>@Html.ActionLink("Research Available Tests", "Index", "Missions", null, new { @class = "btn btn-default" })</p>
+        </div>
+        <div class="col-md-4">
+            <h2>
+                <i class="fa fa-arrow-circle-o-up"></i> Order
+            </h2>
+            <p>Submit a work order online, send in your compound (or drop it off) and we'll keep you updated every step of the way.</p>
+            <p>@Html.ActionLink("Submit Your Compound", "Index", "Missions", null, new { @class = "btn btn-default" })</p>
+        </div>
+        <div class="col-md-4">
+            <h2>
+                <i class="fa fa-bar-chart"></i> Analyze
+            </h2>
+            <p>Look up which tests were marked as active and approve secondary tests </p>
+            <p>@Html.ActionLink("View Test Results", "Index", "Missions", null, new { @class = "btn btn-default" })</p>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="col-lg-2 col-md-3 col-sm-4"></div>
+        <div class="col-lg-8 col-md-6 col-sm-4">
+            <i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>
+            <div class="quote">Now is the time for members and missionaries to come together, to work together, to labor in the Lord’s vineyard to bring souls unto Him. —President Thomas S. Monson</div>
+        </div>
     </div>
 </div>
