@@ -60,6 +60,11 @@ namespace NL.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (returnUrl == null)
+            {
+                returnUrl = "/Home/Index/";
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -69,8 +74,17 @@ namespace NL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(FormCollection form, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
+            if (returnUrl == null)
+            {
+                returnUrl = "/Home/Index/";
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
@@ -88,8 +102,8 @@ namespace NL.Controllers
                      ModelState.AddModelError("", "Invalid login attempt.");
                      return View(model);
              } */
-            string email = form["UserEmail"].ToString();
-            string password = form["UserPassword"].ToString();
+            string email = model.Email;
+            string password = model.Password; ;
 
             var checkuser = db.Database.SqlQuery<User>(
                 "SELECT * " +
@@ -105,6 +119,26 @@ namespace NL.Controllers
             }
 
             return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult AutoLogin(string email, string password)
+        {
+
+            var checkuser = db.Database.SqlQuery<User>(
+                "SELECT * " +
+                "FROM [User] " +
+                "WHERE UserEmail = '" + email + "' " +
+                "AND UserPassword = '" + password + "'");
+
+            if (checkuser.Count() > 0)
+            {
+                FormsAuthentication.SetAuthCookie(email, false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -163,14 +197,17 @@ namespace NL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "UserFirstName,UserLastName, UserAddress1, UserAddress2, UserEmail, UserPassword, UserPhone, UserZIP, RoleID")] User user)
+        public ActionResult Register([Bind(Include = "UserFirstName,UserLastName, UserAddress1, UserAddress2, UserEmail, UserPassword, UserPhone, UserZIP")] User user)
         {
             if (ModelState.IsValid) //ensures binding completed successfully and model is valid
             {
+                user.Balance = 0;
+                user.RoleID = 1;
                 user.UserID = db.Users.Max(r => r.UserID) + 1;
                 db.Users.Add(user);
                 db.SaveChanges(); //saves to database
-                return RedirectToAction("Index"); //returns to index action method
+                LoginViewModel model = new LoginViewModel();
+                return RedirectToAction("AutoLogin", "Account", new { email = user.UserEmail, password = user.UserPassword }); //returns to index action method of the home controller
             }
 
             return View(user); //if model was invalid, returns to create view and shows validation errors
@@ -396,6 +433,7 @@ namespace NL.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

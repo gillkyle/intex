@@ -34,6 +34,7 @@ namespace NL.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Forum()
         {
             ViewBag.Message = "Post and answer questions and interact with our support staff.";

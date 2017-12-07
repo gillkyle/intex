@@ -30,9 +30,10 @@ namespace NL.Models
         public String UserPassword { get; set; }
         [DisplayName("Phone"), StringLength(15, MinimumLength = 10, ErrorMessage = "Phone number is not proper length.")]
         public String UserPhone { get; set; }
-        [Required, ForeignKey("ZIPCode"), StringLength(10, MinimumLength = 5, ErrorMessage = "ZipCode should be in either 5 or 5-4 digit format.")]
+        [Required, DisplayName("ZIP Code"), ForeignKey("ZIPCode"), StringLength(10, MinimumLength = 5, ErrorMessage = "ZipCode should be in either 5 or 5-4 digit format.")]
         public String UserZIP { get; set; }
         public virtual ZIPCode ZIPCode { get; set; }
+        [DisplayName("Balance")]
         public Decimal Balance { get; set; }
         [Required, ForeignKey("Role")]
         public int RoleID { get; set; }
