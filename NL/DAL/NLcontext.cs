@@ -14,9 +14,7 @@ namespace NL.DAL
 
         }
 
-        //public DbSet<Mission> Missions { get; set; }
-        //public DbSet<Question> Questions { get; set; }
-        //public DbSet<Response> Responses { get; set; }
+        public DbSet<Assay> Assay { get; set; }
         //public System.Data.Entity.DbSet<NL.Models.User> Users { get; set; }
     }
 }
