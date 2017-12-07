@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using NL.DAL;
 using NL.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NL.Controllers
 {

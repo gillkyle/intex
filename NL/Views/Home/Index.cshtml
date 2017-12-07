@@ -2,9 +2,11 @@
     ViewBag.Title = "Home Page";
 }
 
+@Html.AntiForgeryToken()
+
 <div class="jumbotron jumbotron-fluid text-center full-width">
     <div class="jumbo-header">
-        <h1>Northwest Labs Pharmaceutical</h1>
+        <h1>Northwest Labs Pharmaceutical - @ViewBag.userEmail </h1>
         <p class="lead">Get the best service and assay results online</p>
         <p>@Html.ActionLink("GET STARTED", "Index", "Missions", null, new { @class = "btn btn-primary cta" })</p>
     </div>
