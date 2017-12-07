@@ -1,0 +1,42 @@
+﻿@model NL.Models.Response
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Response</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Question.QuestionDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question.QuestionDesc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResponseDesc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResponseDesc)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResponseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

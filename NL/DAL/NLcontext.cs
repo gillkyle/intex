@@ -14,7 +14,28 @@ namespace NL.DAL
 
         }
 
-        public DbSet<Assay> Assay { get; set; }
-        //public System.Data.Entity.DbSet<NL.Models.User> Users { get; set; }
+        public System.Data.Entity.DbSet<NL.Models.Assay> Assays { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.Role> Roles { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.ZIPCode> ZIPCodes { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.AssayTest> AssayTests { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.Test> Tests { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.WorkOrder> WorkOrders { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.BillDetail> BillDetails { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.Priority> Priorities { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.Status> Status { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.Question> Questions { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.Response> Responses { get; set; }
     }
 }

@@ -1,34 +1,73 @@
-﻿@model NL.Models.RegisterViewModel
+﻿@model NL.Models.User
 @{
     ViewBag.Title = "Register";
 }
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { htmlAttributes = new { @class = "form-horizontal", role = "form" }}))
 {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.ValidationSummary("", new { htmlAttributes = new { @class = "text-danger" }})
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.Label("UserFirstName", htmlAttributes: new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.Editor("UserFirstName", new { htmlAttributes = new { @class = "form-control" }})
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        @Html.Label("UserLastName", htmlAttributes: new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            @Html.Editor("UserLastName", new { htmlAttributes = new { @class = "form-control" }})
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        @Html.Label("UserAddress1", htmlAttributes: new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            @Html.Editor("UserAddress1", new { htmlAttributes = new { @class = "form-control" }})
         </div>
     </div>
+    <div class="form-group">
+        @Html.Label("UserAddress2", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Editor("UserAddress2", new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("UserEmail", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Editor("UserEmail", new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("UserPassword", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Password("UserPassword", new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("UserPhone", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Editor("UserPhone", new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("UserZIP", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Editor("UserZIP", new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Balance", htmlAttributes: new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Editor("Balance", new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+    </div>
+    @Html.Hidden("RoleID", 1)
+    @Html.Hidden("UserID", 1)
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />

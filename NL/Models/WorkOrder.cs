@@ -14,12 +14,15 @@ namespace NL.Models
     {
         [Key]
         public int WorkOrderID { get; set; }
-        [ForeignKey("BillDetail")]
-        public int BillID { get; set; }
         [ForeignKey("User")]
         public int UserID { get; set; }
+        public virtual User User { get; set; }
+        [ForeignKey("BillDetail")]
+        public int BillID { get; set; }
+        public virtual BillDetail BillDetail { get; set; }
         [ForeignKey("Status")]
         public int StatusID { get; set; }
+        public virtual Status Status { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public DateTime EarlyDate { get; set; }
@@ -28,9 +31,9 @@ namespace NL.Models
         [ForeignKey("Priority")]
         public int PriorityID { get; set; }
         public virtual Priority Priority { get; set; }
-        public float TotalQuote { get; set; }
-        public float ActualPrice { get; set; }
-        public float AdvanceAmtPaid { get; set; }
+        public Decimal TotalQuote { get; set; }
+        public Decimal ActualPrice { get; set; }
+        public Decimal AdvanceAmtPaid { get; set; }
         public DateTime ConfirmationDate { get; set; }
 
     }

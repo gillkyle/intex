@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using NL.DAL;
+using NL.Models;
 
 namespace NL.Controllers
 {
     public class HomeController : Controller
     {
+        private NLcontext db = new NLcontext();
+
         public ActionResult Index()
         {
             return View();
@@ -30,6 +37,10 @@ namespace NL.Controllers
         public ActionResult Forum()
         {
             ViewBag.Message = "Post and answer questions and interact with our support staff.";
+
+            ViewBag.Questions = db.Questions.ToList(); //creates list of question objects
+            ViewBag.Responses = db.Responses.ToList(); //creates list of responses object
+            ViewBag.Users = db.Users.ToList(); //creates list of users
 
             return View();
         }

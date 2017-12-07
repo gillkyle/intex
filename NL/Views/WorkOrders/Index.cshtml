@@ -1,0 +1,105 @@
+﻿@model IEnumerable<NL.Models.WorkOrder>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BillDetail.BillFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Priority.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.StatusDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EarlyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalQuote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdvanceAmtPaid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfirmationDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillDetail.BillFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Priority.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.StatusDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EarlyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalQuote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActualPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdvanceAmtPaid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfirmationDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkOrderID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkOrderID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkOrderID })
+        </td>
+    </tr>
+}
+
+</table>

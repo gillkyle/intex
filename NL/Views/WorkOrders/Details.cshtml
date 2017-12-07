@@ -1,0 +1,122 @@
+﻿@model NL.Models.WorkOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BillDetail.BillFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillDetail.BillFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Priority.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Priority.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status.StatusDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status.StatusDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EarlyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EarlyDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DueDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DueDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalQuote)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalQuote)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdvanceAmtPaid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdvanceAmtPaid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ConfirmationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ConfirmationDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WorkOrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

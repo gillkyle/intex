@@ -16,6 +16,6 @@ namespace NL.Models
         public string Desc { get; set; }
         public string Summary { get; set; }
         public int DaysToComplete { get; set; }
-        public float MTD_mg { get; set; }
+        public Decimal MTD_mg { get; set; }
     }
 }

@@ -12,9 +12,11 @@ namespace NL.Models
     public class AssayTest
     {
         [Key, ForeignKey("Assay")]
+        [Column(Order = 0)]
         public int AssayID { get; set; }
         public virtual Assay Assay { get; set; }
         [Key, ForeignKey("Test")]
+        [Column(Order = 1)]
         public int TestID { get; set; }
         public virtual Test Test { get; set; }
         public bool Active { get; set; }

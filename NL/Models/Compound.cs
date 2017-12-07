@@ -17,9 +17,9 @@ namespace NL.Models
         public int WorkOrderID { get; set; }
         public virtual WorkOrder WorkOrder { get; set; }
         public string Name { get; set; }
-        public float ActualAmount_mg { get; set; }
-        public float StatedAmount_mg { get; set; }
-        public float MolecularMass { get; set; }
+        public Decimal ActualAmount_mg { get; set; }
+        public Decimal StatedAmount_mg { get; set; }
+        public Decimal MolecularMass { get; set; }
         public DateTime DateArrived { get; set; }
         [ForeignKey("User")]
         public int ReceivedBy { get; set; }
