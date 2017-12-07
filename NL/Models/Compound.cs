@@ -21,6 +21,7 @@ namespace NL.Models
         public Decimal ActualAmount_mg { get; set; }
         public Decimal StatedAmount_mg { get; set; }
         public Decimal MolecularMass { get; set; }
+        [DataType(DataType.Date)]
         public DateTime DateArrived { get; set; }
         [ForeignKey("User")]
         public int ReceivedBy { get; set; }

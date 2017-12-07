@@ -12,6 +12,7 @@ namespace NL.Models
     public class Question
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int QuestionID { get; set; } //unique identifier of QuestionID
 
         [ForeignKey("User")] //connects to user table via virtual table and userId foreign key

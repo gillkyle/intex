@@ -53,6 +53,7 @@ namespace NL.Controllers
         {
             if (ModelState.IsValid)
             {
+                question.QuestionID = db.Questions.Max(q => q.QuestionID) + 1;
                 db.Questions.Add(question);
                 db.SaveChanges();
                 return RedirectToAction("Index");

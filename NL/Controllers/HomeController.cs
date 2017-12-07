@@ -33,13 +33,29 @@ namespace NL.Controllers
 
             return View();
         }
-
+        [Authorize]
         public ActionResult Forum()
         {
             ViewBag.Message = "Post and answer questions and interact with our support staff.";
 
             ViewBag.Questions = db.Questions.ToList(); //creates list of question objects
             ViewBag.Responses = db.Responses.ToList(); //creates list of responses object
+            ViewBag.Users = db.Users.ToList(); //creates list of users
+
+            return View();
+        }
+
+        // [Authorize]
+        public ActionResult MyOrders()
+        {
+            ViewBag.Message = "You have no orders to display.";
+
+            ViewBag.Orders = db.Database.SqlQuery<WorkOrder>(
+                "SELECT * " +
+                "FROM [WorkOrder] " +
+                "WHERE UserID = " + 1);
+
+            ViewBag.WorkOrders = db.WorkOrders.ToList(); // creates list of all work orders
             ViewBag.Users = db.Users.ToList(); //creates list of users
 
             return View();

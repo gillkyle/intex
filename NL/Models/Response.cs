@@ -12,6 +12,7 @@ namespace NL.Models
     public class Response
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ResponseID { get; set; }
         [ForeignKey("User")]
         public int UserID { get; set; }

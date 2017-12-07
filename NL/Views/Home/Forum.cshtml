@@ -26,12 +26,13 @@
                 </div>
             }
         }
-@*
+
     <div class="toggleHide">
         <div class="form-group">
             <button id=@question.QuestionID class="btn btn-secondary" name="toggleHide" onclick="(function () { document.getElementById(@question.QuestionID).style.display = 'none'; document.getElementById('@question.QuestionID+form1').style.display = 'initial'; document.getElementById('@question.QuestionID+form2').style.display = 'initial'; })();">Reply</button>
         </div>
     </div>
+
     <div>
         <form id="responseForm" method="post" action="~/Responses/Create">
             @Html.AntiForgeryToken()
@@ -46,7 +47,7 @@
             </div>
         </form>
     </div>
-*@
+
         </div>
     }
 </div>

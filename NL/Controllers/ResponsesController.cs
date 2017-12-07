@@ -54,6 +54,7 @@ namespace NL.Controllers
         {
             if (ModelState.IsValid)
             {
+                response.ResponseID = db.Responses.Max(r => r.ResponseID) + 1;
                 db.Responses.Add(response);
                 db.SaveChanges();
                 return RedirectToAction("Index");

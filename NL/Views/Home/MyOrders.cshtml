@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "My Orders";
+}
+
+<h3>@ViewBag.Title</h3>
+<div class="row">
+    @foreach (var order in ViewBag.WorkOrders)
+    {
+        <p>@order.StatusID</p>
+    }
+    @foreach (var order in ViewBag.Orders)
+    {
+        <p>@order.StatusID</p>
+    }
+</div>

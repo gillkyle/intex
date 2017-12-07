@@ -344,6 +344,7 @@
     <Content Include="Views\Compounds\Details.cshtml" />
     <Content Include="Views\Compounds\Edit.cshtml" />
     <Content Include="Views\Compounds\Index.cshtml" />
+    <Content Include="Views\Home\MyOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
