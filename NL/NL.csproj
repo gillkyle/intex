@@ -197,8 +197,31 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Assay.cs" />
+    <Compile Include="Models\AssayProtocol.cs" />
+    <Compile Include="Models\AssayReferences.cs" />
+    <Compile Include="Models\AssayTest.cs" />
+    <Compile Include="Models\BillDetail.cs" />
+    <Compile Include="Models\Compound.cs" />
+    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\Priority.cs" />
+    <Compile Include="Models\Protocol.cs" />
+    <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Sample.cs" />
+    <Compile Include="Models\SampleAssay.cs" />
+    <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Test.cs" />
+    <Compile Include="Models\TestMaterial.cs" />
+    <Compile Include="Models\TestType.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WorkOrder.cs" />
+    <Compile Include="Models\WorkOrderDiscount.cs" />
+    <Compile Include="Models\ZIPCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

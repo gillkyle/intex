@@ -14,6 +14,7 @@ namespace NL.Models
         [Key]
         public int ProtocolID { get; set; }
         public String ProtocolDesc { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int PreviousID { get; set; }
     }
 }
