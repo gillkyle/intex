@@ -9,12 +9,15 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using NL.Models;
+using NL.DAL;
+using System.Web.Security;
 
 namespace NL.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
+        private NLcontext db = new NLcontext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -57,6 +60,11 @@ namespace NL.Controllers
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            if (returnUrl == null)
+            {
+                returnUrl = "/Home/Index/";
+            }
+
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
@@ -66,8 +74,13 @@ namespace NL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
+            if (returnUrl == null)
+            {
+                returnUrl = "/Home/Index/";
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -75,20 +88,57 @@ namespace NL.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
+            /* var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+             switch (result)
+             {
+                 case SignInStatus.Success:
+                     return RedirectToLocal(returnUrl);
+                 case SignInStatus.LockedOut:
+                     return View("Lockout");
+                 case SignInStatus.RequiresVerification:
+                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                 case SignInStatus.Failure:
+                 default:
+                     ModelState.AddModelError("", "Invalid login attempt.");
+                     return View(model);
+             } */
+            string email = model.Email;
+            string password = model.Password; ;
+
+            var checkuser = db.Database.SqlQuery<User>(
+                "SELECT * " +
+                "FROM [User] " +
+                "WHERE UserEmail = '" + email + "' " +
+                "AND UserPassword = '" + password + "'");
+
+            if (checkuser.Count() > 0)
             {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                FormsAuthentication.SetAuthCookie(email, false);
+
+                return RedirectToLocal(returnUrl);
             }
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult AutoLogin(string email, string password)
+        {
+
+            var checkuser = db.Database.SqlQuery<User>(
+                "SELECT * " +
+                "FROM [User] " +
+                "WHERE UserEmail = '" + email + "' " +
+                "AND UserPassword = '" + password + "'");
+
+            if (checkuser.Count() > 0)
+            {
+                FormsAuthentication.SetAuthCookie(email, false);
+
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Login", "Account");
         }
 
         //
@@ -147,29 +197,20 @@ namespace NL.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public ActionResult Register([Bind(Include = "UserFirstName,UserLastName, UserAddress1, UserAddress2, UserEmail, UserPassword, UserPhone, UserZIP")] User user)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //ensures binding completed successfully and model is valid
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
-                }
-                AddErrors(result);
+                user.Balance = 0;
+                user.RoleID = 1;
+                user.UserID = db.Users.Max(r => r.UserID) + 1;
+                db.Users.Add(user);
+                db.SaveChanges(); //saves to database
+                LoginViewModel model = new LoginViewModel();
+                return RedirectToAction("AutoLogin", "Account", new { email = user.UserEmail, password = user.UserPassword }); //returns to index action method of the home controller
             }
 
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            return View(user); //if model was invalid, returns to create view and shows validation errors
         }
 
         //
@@ -392,6 +433,7 @@ namespace NL.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
 

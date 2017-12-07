@@ -12,8 +12,8 @@ namespace NL.Models
     public class User
     {
         [Key]
-        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int UserID { get; set; }
         [Required, DisplayName("First Name"), StringLength(50, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 50 characters long."),
             RegularExpression(@"^[A-Z][a-zA-Z.\- ]*$", ErrorMessage = "Capitalize last name. -. symbols allowed only.")] //regular expression only allows character and - symbol in name
         public String UserFirstName { get; set; }
@@ -28,10 +28,12 @@ namespace NL.Models
         public String UserEmail { get; set; }
         [Required, DisplayName("Password"), StringLength(50, MinimumLength = 3, ErrorMessage = "Password must be between 3 and 50 characters long.")] //more validation
         public String UserPassword { get; set; }
+        [DisplayName("Phone"), StringLength(15, MinimumLength = 10, ErrorMessage = "Phone number is not proper length.")]
         public String UserPhone { get; set; }
-        [Required, ForeignKey("ZIPCode")]
+        [Required, DisplayName("ZIP Code"), ForeignKey("ZIPCode"), StringLength(10, MinimumLength = 5, ErrorMessage = "ZipCode should be in either 5 or 5-4 digit format.")]
         public String UserZIP { get; set; }
         public virtual ZIPCode ZIPCode { get; set; }
+        [DisplayName("Balance")]
         public Decimal Balance { get; set; }
         [Required, ForeignKey("Role")]
         public int RoleID { get; set; }
