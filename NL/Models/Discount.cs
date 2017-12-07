@@ -14,6 +14,6 @@ namespace NL.Models
         [Key]
         public int DiscountID { get; set; }
         public String Desc { get; set; }
-        public float PercentOff { get; set; }
+        public Decimal PercentOff { get; set; }
     }
 }

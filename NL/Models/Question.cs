@@ -12,10 +12,10 @@ namespace NL.Models
     public class Question
     {
         [Key]
-        public int QuestionId { get; set; } //unique identifier of QuestionID
+        public int QuestionID { get; set; } //unique identifier of QuestionID
 
         [ForeignKey("User")] //connects to user table via virtual table and userId foreign key
-        public int UserId { get; set; }
+        public int UserID { get; set; }
         public virtual User User { get; set; }
 
         [Required, DisplayName("Question Description"), StringLength(500, MinimumLength = 3, ErrorMessage = "Question must be between 3 and 500 characters long."),

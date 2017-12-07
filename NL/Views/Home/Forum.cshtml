@@ -1,13 +1,56 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Forum";
 }
 
 <h2>@ViewBag.Title</h2>
 <h3>Questions</h3>
 <div class="row">
+    @foreach (var question in ViewBag.Questions)
+    {
+        <div class="col-md-12 question-section">
+            <div class="question">
+                @question.QuestionDesc
+            </div>
+        
+        @foreach (var response in ViewBag.Responses)
+        {
+            if (response.QuestionID == question.QuestionID)
+            {
+                <div class="answer">
+                    <i class="glyphicon glyphicon-chevron-right"></i> @response.ResponseDesc
 
+                    <span class="answer-details">User ID: @response.UserID &nbsp;</span>
+                    @*
+    @Html.ActionLink("Edit", "Edit", "Responses", new { id = response.ResponseID, ResponseID = response.ResponseID }, new { @class = "btn btn-info btn-sm" })
+                    *@
+                </div>
+            }
+        }
+@*
+    <div class="toggleHide">
+        <div class="form-group">
+            <button id=@question.QuestionID class="btn btn-secondary" name="toggleHide" onclick="(function () { document.getElementById(@question.QuestionID).style.display = 'none'; document.getElementById('@question.QuestionID+form1').style.display = 'initial'; document.getElementById('@question.QuestionID+form2').style.display = 'initial'; })();">Reply</button>
+        </div>
+    </div>
+    <div>
+        <form id="responseForm" method="post" action="~/Responses/Create">
+            @Html.AntiForgeryToken()
+            <input name="QuestionID" type="number" value=@question.QuestionID class="hidden" />
+            <input name="UserID" type="number" value=@ViewBag.UserID class="hidden" />
+            <div class="form-group">
+                <textarea input name="ResponseDesc" style="display: none" id='@question.QuestionID+form1' class="form-control" for="answer" placeholder="Type your response..."></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Post Your Response" button style="display: none" id='@question.QuestionID+form2' class="btn btn-primary" />
+                <!--button style="display: none" id='@question.QuestionID+form2' class="btn btn-primary " name="submit" input type="submit">Post Your Response</!--button> -->
+            </div>
+        </form>
+    </div>
+*@
+        </div>
+    }
 </div>
+
 <h3>Post your own Question</h3>
 <div class="row">
     <div class="col-md-12">
@@ -20,8 +63,8 @@
                 <div class="form-group">
                     @Html.Label("Question", htmlAttributes: new { @class = "control-label" })
                     <div class="">
-                        @Html.TextArea("QuestionDescription", new { @class = "form-control" })
-                        @*@Html.ValidationMessageFor(model => model.QuestionDescription, "", new { @class = "text-danger" })*@
+                        @Html.TextArea("QuestionDesc", new { @class = "form-control" })
+                        @*@Html.ValidationMessageFor(model => model.QuestionDesc, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
                 <div class="form-group">

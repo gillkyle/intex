@@ -13,7 +13,7 @@ namespace NL.Models
     {
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserId { get; set; }
+        public int UserID { get; set; }
         [Required, DisplayName("First Name"), StringLength(50, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 50 characters long."),
             RegularExpression(@"^[A-Z][a-zA-Z.\- ]*$", ErrorMessage = "Capitalize last name. -. symbols allowed only.")] //regular expression only allows character and - symbol in name
         public String UserFirstName { get; set; }
@@ -31,7 +31,7 @@ namespace NL.Models
         [ForeignKey("ZIPCode")]
         public String UserZIP { get; set; }
         public virtual ZIPCode ZIPCode { get; set; }
-        public float Balance { get; set; }
+        public Decimal Balance { get; set; }
         [ForeignKey("Role")]
         public int RoleID { get; set; }
         public virtual Role Role { get; set; }

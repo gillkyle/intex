@@ -13,6 +13,6 @@ namespace NL.Models
     {
         [Key]
         public int StatusID { get; set; }
-        public String StatusDesc { get; set; }
+        public String StatusDescription { get; set; }
     }
 }
