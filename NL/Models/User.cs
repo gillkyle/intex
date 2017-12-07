@@ -13,13 +13,14 @@ namespace NL.Models
     {
         [Key]
         //[DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
         [Required, DisplayName("First Name"), StringLength(50, MinimumLength = 2, ErrorMessage = "First name must be between 2 and 50 characters long."),
             RegularExpression(@"^[A-Z][a-zA-Z.\- ]*$", ErrorMessage = "Capitalize last name. -. symbols allowed only.")] //regular expression only allows character and - symbol in name
         public String UserFirstName { get; set; }
         [Required, DisplayName("Last Name"), StringLength(50, MinimumLength = 2, ErrorMessage = "Last name must be between 2 and 50 characters long."),
             RegularExpression(@"^[A-Z][a-zA-Z.\- ]*$", ErrorMessage = "Capitalize last name. -. symbols allowed only.")] //regular expression only allows character and - symbol in name
         public String UserLastName { get; set; }
+        [Required, DisplayName("Address 1"), StringLength(50, MinimumLength = 2, ErrorMessage = "Address 1 must be between 2 and 50 characters long.")] //
         public String UserAddress1 { get; set; }
         public String UserAddress2 { get; set; }
         [Required, DisplayName("Email"), StringLength(50, MinimumLength = 3, ErrorMessage = "Email must be between 3 and 50 characters long."),
@@ -28,11 +29,11 @@ namespace NL.Models
         [Required, DisplayName("Password"), StringLength(50, MinimumLength = 3, ErrorMessage = "Password must be between 3 and 50 characters long.")] //more validation
         public String UserPassword { get; set; }
         public String UserPhone { get; set; }
-        [ForeignKey("ZIPCode")]
+        [Required, ForeignKey("ZIPCode")]
         public String UserZIP { get; set; }
         public virtual ZIPCode ZIPCode { get; set; }
-        public Decimal Balance { get; set; }
-        [ForeignKey("Role")]
+        public float Balance { get; set; }
+        [Required, ForeignKey("Role")]
         public int RoleID { get; set; }
         public virtual Role Role { get; set; }
     }
