@@ -1,16 +1,49 @@
 ﻿
 @{
     ViewBag.Title = "My Orders";
+    ViewBag.statusBar = 0;
 }
 
 <h3>@ViewBag.Title</h3>
 <div class="row">
-    @foreach (var order in ViewBag.WorkOrders)
-    {
-        <p>@order.StatusID</p>
-    }
     @foreach (var order in ViewBag.Orders)
     {
-        <p>@order.StatusID</p>
+        <h5 class="order-title">ORDER NUMBER: @order.WorkOrderID</h5>
+        foreach (var compound in ViewBag.Compounds)
+        {
+            if (compound.WorkOrderID == order.WorkOrderID)
+            {
+                <div class="compound">
+                    <div class="compound-name">@compound.Name</div>
+                    <div class="compound-date">@compound.DateArrived</div>
+                    <div class="compound-appearance">@compound.Appearance</div>
+                </div>
+            }
+        }
+
+        foreach (var status in ViewBag.Statuses)
+        {
+            if (status.StatusID == order.StatusID)
+            { 
+                <div>Order Status: @status.StatusDescription</div>
+                <div>Estimated Completion Date: @order.DueDate</div>
+            }
+        }
+        if (order.StatusID == 1)
+        {
+            ViewBag.statusBar = 0;
+        }
+        else if (order.StatusID == 2)
+        {
+            ViewBag.statusBar = 50;
+        }
+        else if (order.StatusID == 3)
+        {
+            ViewBag.statusBar = 1000;
+        }
+        <div class="status-bar">
+            <div class="status-bar-filler" style="width: @ViewBag.statusBar%"></div>
+        </div>
+        
     }
 </div>

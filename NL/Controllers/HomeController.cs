@@ -53,10 +53,17 @@ namespace NL.Controllers
             ViewBag.Orders = db.Database.SqlQuery<WorkOrder>(
                 "SELECT * " +
                 "FROM [WorkOrder] " +
+                "INNER JOIN [Status] ON [Status].StatusID = WorkOrder.StatusID " +
                 "WHERE UserID = " + 1);
 
-            ViewBag.WorkOrders = db.WorkOrders.ToList(); // creates list of all work orders
+            ViewBag.Compounds = db.Database.SqlQuery<Compound>(
+                "SELECT * " +
+                "FROM [Compound] ");
+
             ViewBag.Users = db.Users.ToList(); //creates list of users
+            ViewBag.Statuses = db.Status.ToList();
+            //ViewBag.Compounds = db.Compounds.ToList();
+            //ViewBag.Orders = db.WorkOrders.ToList();
 
             return View();
         }
