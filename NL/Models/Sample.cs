@@ -17,8 +17,8 @@ namespace NL.Models
         public int LTNum { get; set; }
         public virtual Compound Compound { get; set; }
         public int SequenceCode { get; set; }
-        public float Concentration { get; set; }
-        public float Weight_mg { get; set; }
+        public Decimal Concentration { get; set; }
+        public Decimal Weight_mg { get; set; }
 
     }
 }

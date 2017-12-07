@@ -1,0 +1,82 @@
+﻿@model NL.Models.Compound
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Compound</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User.UserFirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User.UserFirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkOrder.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkOrder.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ActualAmount_mg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActualAmount_mg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatedAmount_mg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatedAmount_mg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MolecularMass)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MolecularMass)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateArrived)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateArrived)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Appearance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Appearance)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.LTNum }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

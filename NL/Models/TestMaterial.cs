@@ -17,7 +17,7 @@ namespace NL.Models
         [Key, ForeignKey("Test")]
         public int TestID { get; set; }
         public virtual Test Test { get; set; }
-        public float Quantity_g { get; set; }
+        public Decimal Quantity_g { get; set; }
 
     }
 }

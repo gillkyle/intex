@@ -32,7 +32,7 @@ namespace NL.Models
         [Required, ForeignKey("ZIPCode")]
         public String UserZIP { get; set; }
         public virtual ZIPCode ZIPCode { get; set; }
-        public float Balance { get; set; }
+        public Decimal Balance { get; set; }
         [Required, ForeignKey("Role")]
         public int RoleID { get; set; }
         public virtual Role Role { get; set; }

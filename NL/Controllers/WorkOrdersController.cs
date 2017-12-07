@@ -42,7 +42,7 @@ namespace NL.Controllers
         {
             ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName");
             ViewBag.PriorityID = new SelectList(db.Priorities, "PriorityID", "Description");
-            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDesc");
+            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription");
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName");
             return View();
         }
@@ -63,7 +63,7 @@ namespace NL.Controllers
 
             ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName", workOrder.BillID);
             ViewBag.PriorityID = new SelectList(db.Priorities, "PriorityID", "Description", workOrder.PriorityID);
-            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDesc", workOrder.StatusID);
+            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription", workOrder.StatusID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", workOrder.UserID);
             return View(workOrder);
         }
@@ -82,7 +82,7 @@ namespace NL.Controllers
             }
             ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName", workOrder.BillID);
             ViewBag.PriorityID = new SelectList(db.Priorities, "PriorityID", "Description", workOrder.PriorityID);
-            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDesc", workOrder.StatusID);
+            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription", workOrder.StatusID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", workOrder.UserID);
             return View(workOrder);
         }
@@ -102,7 +102,7 @@ namespace NL.Controllers
             }
             ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName", workOrder.BillID);
             ViewBag.PriorityID = new SelectList(db.Priorities, "PriorityID", "Description", workOrder.PriorityID);
-            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDesc", workOrder.StatusID);
+            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription", workOrder.StatusID);
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", workOrder.UserID);
             return View(workOrder);
         }

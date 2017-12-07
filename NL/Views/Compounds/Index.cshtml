@@ -1,0 +1,75 @@
+﻿@model IEnumerable<NL.Models.Compound>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.User.UserFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrder.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualAmount_mg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatedAmount_mg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MolecularMass)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateArrived)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Appearance)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.UserFirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkOrder.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActualAmount_mg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatedAmount_mg)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MolecularMass)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateArrived)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Appearance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.LTNum }) |
+            @Html.ActionLink("Details", "Details", new { id=item.LTNum }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.LTNum })
+        </td>
+    </tr>
+}
+
+</table>

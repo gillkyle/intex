@@ -12,6 +12,7 @@ namespace NL.Models
     public class Compound
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int LTNum { get; set; }
         [ForeignKey("WorkOrder")]
         public int WorkOrderID { get; set; }

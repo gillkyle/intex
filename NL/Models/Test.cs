@@ -19,7 +19,7 @@ namespace NL.Models
         public String Desc { get; set; }
         public int SetupTimeMins { get; set; }
         public bool Required { get; set; }
-        public float Cost { get; set; }
-        public float Quote { get; set; }
+        public Decimal Cost { get; set; }
+        public Decimal Quote { get; set; }
     }
 }
