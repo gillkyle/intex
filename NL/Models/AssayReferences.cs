@@ -13,7 +13,7 @@ namespace NL.Models
     {
         [Key]
         public int RefID { get; set; }
-        [ForeignKey("AssayID")]
+        [ForeignKey("Assay")]
         public int AssayID { get; set; }
         public virtual Assay Assay { get; set; }
         public string RefName { get; set; }

@@ -15,6 +15,21 @@ namespace NL.Controllers
     {
         private NLcontext db = new NLcontext();
 
+
+        public ActionResult TestDetails(int? AssayID, String desc)
+        {
+            ViewBag.AssayID = AssayID;
+            ViewBag.Assays = db.Assays.ToList();
+            ViewBag.AssayTests = db.AssayTests.ToList();
+            ViewBag.Tests = db.Tests.ToList();
+
+            ViewBag.Desc = desc;
+
+            return View();
+
+
+        }
+
         // GET: AssayTests
         public ActionResult Index()
         {

@@ -6,22 +6,13 @@
 
 <div class="jumbotron jumbotron-fluid text-center full-width">
     <div class="jumbo-header">
-        <h1>Northwest Labs Pharmaceutical - @ViewBag.userEmail </h1>
+        <h1>Northwest Labs Pharmaceutical</h1>
         <p class="lead">Get the best service and assay results online</p>
         <p>@Html.ActionLink("GET STARTED", "Index", "Missions", null, new { @class = "btn btn-primary cta" })</p>
     </div>
 </div>
 <div class="container body-content">
     <div class="row">
-        <div class="col-md-4">
-            <h2>
-                <i class="fa fa-search"></i> Research
-            </h2>
-            <p>
-                Learn about tests and make decisions on how to test your compound.
-            </p>
-            <p>@Html.ActionLink("Research Available Tests", "Index", "Home", null, new { @class = "btn btn-default" })</p>
-        </div>
         <div class="col-md-4">
             <h2>
                 <i class="fa fa-arrow-circle-o-up"></i> Order
@@ -34,14 +25,23 @@
                 <i class="fa fa-bar-chart"></i> Analyze
             </h2>
             <p>Look up which tests were marked as active and approve secondary tests </p>
-            <p>@Html.ActionLink("View Test Results", "Index", "Home", null, new { @class = "btn btn-default" })</p>
+            <p>@Html.ActionLink("View Test Results", "MyOrders", "Home", null, new { @class = "btn btn-default" })</p>
+        </div>
+        <div class="col-md-4">
+            <h2>
+                <i class="fa fa-search"></i> Research
+            </h2>
+            <p>
+                Learn about tests and make decisions on how to test your compound.
+            </p>
+            <p>@Html.ActionLink("Research Available Tests", "Catalog", "Home", null, new { @class = "btn btn-default" })</p>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-4"></div>
         <div class="col-lg-8 col-md-6 col-sm-4">
             <i class="fa fa-quote-left fa-3x fa-pull-left fa-border" aria-hidden="true"></i>
-            <div class="quote">We foresee no limit to scientific advancement in the future, and in scientific truth there is nothing dead. -George Edward Woodberry</div>
+            <div class="quote">We foresee no limit to scientific advancement in the future, and in scientific truth there is nothing dead. <br /> -George Edward Woodberry</div>
         </div>
     </div>
 </div>

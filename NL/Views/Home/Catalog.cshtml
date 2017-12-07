@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Catalog";
+    // add some images to use for Assay cards
+    string[] pics = new string[6];
+    pics[0] = "https://images.pexels.com/photos/248152/pexels-photo-248152.jpeg?w=940&h=650&auto=compress&cs=tinysrgb";
+    pics[1] = "https://images.pexels.com/photos/75627/pexels-photo-75627.jpeg?w=940&h=650&auto=compress&cs=tinysrgb";
+    pics[2] = "https://images.pexels.com/photos/161702/harmony-relax-rock-moqui-161702.jpeg?w=940&h=650&auto=compress&cs=tinysrgb";
+    pics[3] = "https://images.pexels.com/photos/248152/pexels-photo-248152.jpeg?w=940&h=650&auto=compress&cs=tinysrgb";
+    pics[4] = "https://images.pexels.com/photos/248152/pexels-photo-248152.jpeg?w=940&h=650&auto=compress&cs=tinysrgb";
+    pics[5] = "https://images.pexels.com/photos/248152/pexels-photo-248152.jpeg?w=940&h=650&auto=compress&cs=tinysrgb";
+}
+
+<h2>Catalog</h2>
+<div class="card-deck">
+    @{int i = 0;}
+    @foreach (var assay in ViewBag.Assays)
+    {
+        string desc = assay.Desc;
+        // @Html.ActionLink(desc, "TestDetails", "AssayTests", new { AssayID = assay.AssayID, desc = desc }, new { @class = "compound-name h4" })
+        // <a href=" ="@Url.Action("AssayTest", "Assay", new { AssayDesc = @assay.Desc})>@assay.Desc</a>
+        <div class="card" style="width: 25rem;">
+            <img class="card-img-top" src=@pics[i] alt="Card image cap">
+            <div class="card-block">
+                <h4 class="card-title">@desc</h4>
+                <p class="card-text">@assay.Summary</p>
+                @Html.ActionLink("More Infomation", "TestDetails", "AssayTests", new { AssayID = assay.AssayID, desc = desc }, new { @class = "btn btn-secondary outline" })
+            </div>
+        </div>
+        i++;
+    }
+</div>

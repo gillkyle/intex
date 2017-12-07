@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Assay Test Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var Assay in ViewBag.Assays)
+{
+    if (ViewBag.AssayID == Assay.AssayID)
+    {
+    <h4>@ViewBag.Desc</h4>
+        <table style="width: 100%">
+        <tr>
+            <th>Test Name</th>
+            <th>Approx. Cost</th>
+            <th>Required</th>
+            <th>Setup Time (min)</th>
+            <th>ID</th>
+        </tr>
+        @foreach (var AssayTest in ViewBag.AssayTests)
+        {
+            if (AssayTest.AssayID == ViewBag.AssayID)
+            {
+                foreach (var Test in ViewBag.Tests)
+                {
+                    if (AssayTest.TestID == Test.TestID)
+                    {
+                        <tr>
+                            <td>@Test.Desc</td>
+                            <td>@Test.Quote</td>
+                            <td>@{
+                                if (Test.Required == true) { <i class="fa fa-check-o"></i> }
+                                else
+                                { <i class="fa fa-times-circle-o"></i> } }</td>
+                            <td>@Test.SetupTimeMins</td>
+                            <td>@Test.TestTypeID</td>
+                        </tr>
+                    }
+                }
+            }
+        }
+        </table>
+    }
+}

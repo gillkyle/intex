@@ -1,0 +1,42 @@
+﻿@model NL.Models.AssayReferences
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AssayReferences</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assay.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assay.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RefName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RefName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RefSource)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RefSource)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RefID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

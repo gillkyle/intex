@@ -1,0 +1,45 @@
+﻿@model IEnumerable<NL.Models.AssayReferences>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Assay.Desc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RefSource)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assay.Desc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RefSource)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RefID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RefID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RefID })
+        </td>
+    </tr>
+}
+
+</table>

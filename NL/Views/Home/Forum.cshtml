@@ -18,8 +18,13 @@
             {
                 <div class="answer">
                     <i class="glyphicon glyphicon-chevron-right"></i> @response.ResponseDesc
-
-                    <span class="answer-details">User ID: @response.UserID &nbsp;</span>
+                    @foreach (var u in ViewBag.Users)
+                    {
+                        if (u.UserID == response.UserID)
+                        {
+                        <span class="answer-details">User: @u.UserFirstName @u.UserLastName  &nbsp;</span>
+                        }
+                    }
                     @*
     @Html.ActionLink("Edit", "Edit", "Responses", new { id = response.ResponseID, ResponseID = response.ResponseID }, new { @class = "btn btn-info btn-sm" })
                     *@
@@ -37,7 +42,7 @@
         <form id="responseForm" method="post" action="~/Responses/Create">
             @Html.AntiForgeryToken()
             <input name="QuestionID" type="number" value=@question.QuestionID class="hidden" />
-            <input name="UserID" type="number" value=@ViewBag.UserID class="hidden" />
+            <input name="UserID" type="number" value=@ViewBag.userID class="hidden" />
             <div class="form-group">
                 <textarea input name="ResponseDesc" style="display: none" id='@question.QuestionID+form1' class="form-control" for="answer" placeholder="Type your response..."></textarea>
             </div>
@@ -68,6 +73,7 @@
                         @*@Html.ValidationMessageFor(model => model.QuestionDesc, "", new { @class = "text-danger" })*@
                     </div>
                 </div>
+                @Html.Hidden("UserID", (int)ViewBag.userID)
                 <div class="form-group">
                     <div class="">
                         <input type="submit" value="Create" class="btn btn-default" />

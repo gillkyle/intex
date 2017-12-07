@@ -194,6 +194,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AssayReferencesController.cs" />
     <Compile Include="Controllers\AssaysController.cs" />
     <Compile Include="Controllers\AssayTestsController.cs" />
     <Compile Include="Controllers\CompoundsController.cs" />
@@ -345,6 +346,13 @@
     <Content Include="Views\Compounds\Edit.cshtml" />
     <Content Include="Views\Compounds\Index.cshtml" />
     <Content Include="Views\Home\MyOrders.cshtml" />
+    <Content Include="Views\AssayReferences\Create.cshtml" />
+    <Content Include="Views\AssayReferences\Delete.cshtml" />
+    <Content Include="Views\AssayReferences\Details.cshtml" />
+    <Content Include="Views\AssayReferences\Edit.cshtml" />
+    <Content Include="Views\AssayReferences\Index.cshtml" />
+    <Content Include="Views\Home\Catalog.cshtml" />
+    <Content Include="Views\AssayTests\TestDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

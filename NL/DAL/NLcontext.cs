@@ -39,5 +39,7 @@ namespace NL.DAL
         public System.Data.Entity.DbSet<NL.Models.Response> Responses { get; set; }
 
         public System.Data.Entity.DbSet<NL.Models.Compound> Compounds { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.AssayReferences> AssayReferences { get; set; }
     }
 }

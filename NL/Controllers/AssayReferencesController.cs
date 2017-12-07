@@ -11,117 +11,112 @@ using NL.Models;
 
 namespace NL.Controllers
 {
-    public class ResponsesController : Controller
+    public class AssayReferencesController : Controller
     {
         private NLcontext db = new NLcontext();
 
-        // GET: Responses
+        // GET: AssayReferences
         public ActionResult Index()
         {
-            var responses = db.Responses.Include(r => r.Question).Include(r => r.User);
-            return View(responses.ToList());
+            var assayReferences = db.AssayReferences.Include(a => a.Assay);
+            return View(assayReferences.ToList());
         }
 
-        // GET: Responses/Details/5
+        // GET: AssayReferences/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Response response = db.Responses.Find(id);
-            if (response == null)
+            AssayReferences assayReferences = db.AssayReferences.Find(id);
+            if (assayReferences == null)
             {
                 return HttpNotFound();
             }
-            return View(response);
+            return View(assayReferences);
         }
 
-        // GET: Responses/Create
+        // GET: AssayReferences/Create
         public ActionResult Create()
         {
-            ViewBag.QuestionID = new SelectList(db.Questions, "QuestionID", "QuestionDesc");
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName");
+            ViewBag.AssayID = new SelectList(db.Assays, "AssayID", "Desc");
             return View();
         }
 
-        // POST: Responses/Create
+        // POST: AssayReferences/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ResponseID,UserID,QuestionID,ResponseDesc")] Response response)
+        public ActionResult Create([Bind(Include = "RefID,AssayID,RefName,RefSource")] AssayReferences assayReferences)
         {
             if (ModelState.IsValid)
             {
-                response.ResponseID = db.Responses.Max(r => r.ResponseID) + 1;
-                db.Responses.Add(response);
+                db.AssayReferences.Add(assayReferences);
                 db.SaveChanges();
-                return Redirect("/Home/Forum");
+                return RedirectToAction("Index");
             }
 
-            ViewBag.QuestionID = new SelectList(db.Questions, "QuestionID", "QuestionDesc", response.QuestionID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", response.UserID);
-            return View(response);
+            ViewBag.AssayID = new SelectList(db.Assays, "AssayID", "Desc", assayReferences.AssayID);
+            return View(assayReferences);
         }
 
-        // GET: Responses/Edit/5
+        // GET: AssayReferences/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Response response = db.Responses.Find(id);
-            if (response == null)
+            AssayReferences assayReferences = db.AssayReferences.Find(id);
+            if (assayReferences == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.QuestionID = new SelectList(db.Questions, "QuestionID", "QuestionDesc", response.QuestionID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", response.UserID);
-            return View(response);
+            ViewBag.AssayID = new SelectList(db.Assays, "AssayID", "Desc", assayReferences.AssayID);
+            return View(assayReferences);
         }
 
-        // POST: Responses/Edit/5
+        // POST: AssayReferences/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ResponseID,UserID,QuestionID,ResponseDesc")] Response response)
+        public ActionResult Edit([Bind(Include = "RefID,AssayID,RefName,RefSource")] AssayReferences assayReferences)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(response).State = EntityState.Modified;
+                db.Entry(assayReferences).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.QuestionID = new SelectList(db.Questions, "QuestionID", "QuestionDesc", response.QuestionID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", response.UserID);
-            return View(response);
+            ViewBag.AssayID = new SelectList(db.Assays, "AssayID", "Desc", assayReferences.AssayID);
+            return View(assayReferences);
         }
 
-        // GET: Responses/Delete/5
+        // GET: AssayReferences/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Response response = db.Responses.Find(id);
-            if (response == null)
+            AssayReferences assayReferences = db.AssayReferences.Find(id);
+            if (assayReferences == null)
             {
                 return HttpNotFound();
             }
-            return View(response);
+            return View(assayReferences);
         }
 
-        // POST: Responses/Delete/5
+        // POST: AssayReferences/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Response response = db.Responses.Find(id);
-            db.Responses.Remove(response);
+            AssayReferences assayReferences = db.AssayReferences.Find(id);
+            db.AssayReferences.Remove(assayReferences);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

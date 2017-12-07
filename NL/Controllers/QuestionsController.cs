@@ -49,14 +49,14 @@ namespace NL.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "QuestionID,UserID,QuestionDesc")] Question question)
+        public ActionResult Create([Bind(Include = "QuestionDesc,UserID")] Question question)
         {
             if (ModelState.IsValid)
             {
                 question.QuestionID = db.Questions.Max(q => q.QuestionID) + 1;
                 db.Questions.Add(question);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Home/Forum");
             }
 
             ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", question.UserID);

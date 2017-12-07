@@ -37,7 +37,16 @@ namespace NL.Controllers
         [Authorize]
         public ActionResult Forum()
         {
-            ViewBag.Message = "Post and answer questions and interact with our support staff.";
+            string userEmail = User.Identity.GetUserName();
+            if (userEmail != "")
+            {
+                int userID = db.Database.SqlQuery<int>(
+                      "SELECT TOP 1 UserId " +
+                      "FROM [User] " +
+                      "WHERE UserEmail = '" + userEmail + "'").First<int>();
+                ViewBag.userID = userID;
+            }
+                ViewBag.Message = "Post and answer questions and interact with our support staff.";
 
             ViewBag.Questions = db.Questions.ToList(); //creates list of question objects
             ViewBag.Responses = db.Responses.ToList(); //creates list of responses object
@@ -46,16 +55,43 @@ namespace NL.Controllers
             return View();
         }
 
-        // [Authorize]
+        public ActionResult Catalog()
+        {
+            ViewBag.Message = "Read about some of the many different tests we run.";
+
+            ViewBag.Assays = db.Assays.ToList();
+            ViewBag.AssayReferences = db.AssayReferences.ToList();
+
+            return View();
+        }
+
+        [Authorize]
         public ActionResult MyOrders()
         {
+            string userEmail = User.Identity.GetUserName();
+            if (userEmail != "")
+            {
+                int userID = db.Database.SqlQuery<int>(
+                      "SELECT TOP 1 UserId " +
+                      "FROM [User] " +
+                      "WHERE UserEmail = '" + userEmail + "'").First<int>();
+                ViewBag.userID = userID;
+
+                var userFullName= db.Database.SqlQuery<String>(
+                      "SELECT TOP 1 UserFirstName + ' ' + UserLastName " +
+                      "FROM [User] " +
+                      "WHERE UserEmail = '" + userEmail + "'").First<String>();
+                ViewBag.userFullName = userFullName;
+            }
+
+
             ViewBag.Message = "You have no orders to display.";
 
             ViewBag.Orders = db.Database.SqlQuery<WorkOrder>(
                 "SELECT * " +
                 "FROM [WorkOrder] " +
                 "INNER JOIN [Status] ON [Status].StatusID = WorkOrder.StatusID " +
-                "WHERE UserID = " + 1);
+                "WHERE UserID = " + ViewBag.userID);
 
             ViewBag.Compounds = db.Database.SqlQuery<Compound>(
                 "SELECT * " +
