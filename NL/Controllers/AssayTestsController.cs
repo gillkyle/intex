@@ -31,7 +31,7 @@ namespace NL.Controllers
         public ActionResult TestResults(int? SampleID)
         {
             var TestResults = db.Database.SqlQuery<TestResult>(
-                    "SELECT SampleAssay.AssayID, Test.TestID, AssayTest.Active, AssayTest.Complete, AssayTest.QuantResults, AssayTest.QualResults, AssayTest.Approval, Assay.[Desc] " +
+                    "SELECT SampleAssay.AssayID, Test.TestID, AssayTest.Active, AssayTest.Complete, AssayTest.QuantResults, AssayTest.QualResults, AssayTest.Approval, Test.[Desc] " +
                     "FROM SampleAssay INNER JOIN " +
                     "    Assay ON SampleAssay.AssayID = Assay.AssayID INNER JOIN " +
                     "    AssayTest ON Assay.AssayID = AssayTest.AssayID INNER JOIN " +

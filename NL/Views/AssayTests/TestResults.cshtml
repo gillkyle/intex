@@ -3,8 +3,26 @@
     ViewBag.Title = "TestResults";
 }
 
-<h2>TestResults</h2>
+<h2>Test Results</h2>
+
 @foreach (var tr in ViewBag.TestResults)
 {
-    <p>@tr.QuantResults</p>
+    <div class="tr">
+        <div class="tr-desc">@tr.Desc</div>
+        <div>Quantified Results: @tr.QuantResults</div>
+        <div>Qualitative Results: @tr.QualResults</div>
+        <div style="font-size: 20px"> Complete: 
+            @if (tr.Complete == false)
+            { <i style="color: crimson; font-size: 24px" class="fa fa-times-circle-o"></i> }
+            else
+            {<i style="color: forestgreen; font-size: 24px" class="fa fa-check-circle-o"></i> }
+        </div>
+        <div style="font-size: 20px">
+            Active:
+            @if (tr.Active == false)
+            { <i style="color: crimson; font-size: 24px" class="fa fa-times-circle-o"></i> }
+            else
+            {<i style="color: forestgreen; font-size: 24px" class="fa fa-check-circle-o"></i> <div class="btn btn-sm btn-secondary outline">Approve Secondary Tests</div> }
+        </div>
+    </div>
 }
