@@ -1,31 +1,29 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "My Orders";
     ViewBag.statusBar = 0;
 }
-
 <h3>@ViewBag.Title</h3>
 <h5>Customer: @ViewBag.userFullName</h5>
 <div class="row">
     @foreach (var order in ViewBag.Orders)
     {
-        <h5 class="order-title">ORDER NUMBER: @order.WorkOrderID</h5>
+        <h4 class="order-title">ORDER NUMBER: @order.WorkOrderID</h4>
         foreach (var compound in ViewBag.Compounds)
         {
             if (compound.WorkOrderID == order.WorkOrderID)
             {
                 <div class="compound">
-                    <div class="compound-name">@compound.Name</div>
-                    <div class="compound-date">@compound.DateArrived</div>
+                    <div class="compound-name">@compound.Name <span style="font-size: 16px; color: #777">LT#: @compound.LTNum</span></div>
+                    <div class="compound-date">Date Received: @compound.DateArrived</div>
                     <div class="compound-appearance">@compound.Appearance</div>
+                    @Html.ActionLink("View Sample Results", "Index", "Samples", new { AssayID = compound.LTNum }, new { @class = "btn btn-secondary outline btn-sm" })
                 </div>
             }
         }
-
         foreach (var status in ViewBag.Statuses)
         {
             if (status.StatusID == order.StatusID)
-            { 
+            {
                 <div>Order Status: @status.StatusDescription</div>
                 <div>Estimated Completion Date: @order.DueDate</div>
             }
@@ -45,6 +43,6 @@
         <div class="status-bar">
             <div class="status-bar-filler" style="width: @ViewBag.statusBar%"></div>
         </div>
-        
+        <br /> <br />
     }
 </div>
