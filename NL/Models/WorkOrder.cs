@@ -13,6 +13,7 @@ namespace NL.Models
     public class WorkOrder
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int WorkOrderID { get; set; }
         [ForeignKey("User")]
         public int UserID { get; set; }
@@ -23,10 +24,12 @@ namespace NL.Models
         [ForeignKey("Status")]
         public int StatusID { get; set; }
         public virtual Status Status { get; set; }
+        [Required, DataType(DataType.Date)]
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public DateTime EarlyDate { get; set; }
         public DateTime DueDate { get; set; }
+        [Required, StringLength(4000, MinimumLength = 10, ErrorMessage = "String should include compound name, required assays, etc")]
         public String Description { get; set; }
         [ForeignKey("Priority")]
         public int PriorityID { get; set; }

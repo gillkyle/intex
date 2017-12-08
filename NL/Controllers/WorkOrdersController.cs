@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using NL.DAL;
 using NL.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NL.Controllers
 {
+    [Authorize]
     public class WorkOrdersController : Controller
     {
         private NLcontext db = new NLcontext();
@@ -37,35 +39,98 @@ namespace NL.Controllers
             return View(workOrder);
         }
 
+        [Authorize]
         // GET: WorkOrders/Create
         public ActionResult Create()
         {
-            ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName");
+            string userEmail = User.Identity.GetUserName();
+
+                int userID = db.Database.SqlQuery<int>(
+                      "SELECT TOP 1 UserId " +
+                      "FROM [User] " +
+                      "WHERE UserEmail = '" + userEmail + "'").First<int>();
+           
+
+            var userFullName = db.Database.SqlQuery<String>(
+                  "SELECT TOP 1 UserFirstName + ' ' + UserLastName " +
+                  "FROM [User] " +
+                   "WHERE UserEmail = '" + userEmail + "'").First<String>();
+
+            ViewBag.userID = userID;
+            ViewBag.userFullName = userFullName;
+
+            //ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName");
             ViewBag.PriorityID = new SelectList(db.Priorities, "PriorityID", "Description");
-            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription");
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName");
+            //ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription");
+            //ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName");
             return View();
         }
 
         // POST: WorkOrders/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WorkOrderID,BillID,UserID,StatusID,StartTime,EndTime,EarlyDate,DueDate,Description,PriorityID,TotalQuote,ActualPrice,AdvanceAmtPaid,ConfirmationDate")] WorkOrder workOrder)
+        public ActionResult Create([Bind(Include = "UserID,StartTime,Description,PriorityID")] WorkOrder workOrder)
         {
             if (ModelState.IsValid)
             {
+                int BillID = db.Database.SqlQuery<int>(
+                    "SELECT TOP 1 BillID " +
+                    "FROM BillDetail " +
+                    "WHERE UserID = " + workOrder.UserID).First<int>();
+
+                workOrder.BillID = BillID;
+                workOrder.UserID = workOrder.UserID;
+                workOrder.EarlyDate = workOrder.StartTime.AddDays(3);
+                workOrder.DueDate = workOrder.StartTime.AddDays(30);
+                workOrder.WorkOrderID = db.WorkOrders.Max(r => r.WorkOrderID) + 1;
+                workOrder.EndTime = workOrder.StartTime.AddDays(100);
+                workOrder.ConfirmationDate = workOrder.StartTime;
+                workOrder.StatusID = 1;
                 db.WorkOrders.Add(workOrder);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ThankYou", new { userID = workOrder.UserID, WorkOrderID = workOrder.WorkOrderID });
             }
 
-            ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName", workOrder.BillID);
+            //ViewBag.BillID = new SelectList(db.BillDetails, "BillID", "BillFirstName", workOrder.BillID);
             ViewBag.PriorityID = new SelectList(db.Priorities, "PriorityID", "Description", workOrder.PriorityID);
-            ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription", workOrder.StatusID);
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", workOrder.UserID);
+            //ViewBag.StatusID = new SelectList(db.Status, "StatusID", "StatusDescription", workOrder.StatusID);
+            //ViewBag.UserID = new SelectList(db.Users, "UserID", "UserFirstName", workOrder.UserID);
+
+            string userEmail = User.Identity.GetUserName();
+
+            int userID = db.Database.SqlQuery<int>(
+                  "SELECT TOP 1 UserId " +
+                  "FROM [User] " +
+                  "WHERE UserEmail = '" + userEmail + "'").First<int>();
+
+
+            var userFullName = db.Database.SqlQuery<String>(
+                  "SELECT TOP 1 UserFirstName + ' ' + UserLastName " +
+                  "FROM [User] " +
+                   "WHERE UserEmail = '" + userEmail + "'").First<String>();
+
+            ViewBag.userFullName = userFullName;
+
             return View(workOrder);
+        }
+
+        [Authorize]
+        public ActionResult ThankYou(int? UserID, int? WorkOrderID)
+        {
+
+            var userFullName = db.Database.SqlQuery<String>(
+             "SELECT TOP 1 UserFirstName + ' ' + UserLastName " +
+             "FROM [User] " +
+             "WHERE UserID = '" + UserID + "'").First<String>();
+
+            ViewBag.UserFullName = userFullName;
+            ViewBag.WorkOrderID = WorkOrderID;
+
+
+            return View();
         }
 
         // GET: WorkOrders/Edit/5
