@@ -1,0 +1,42 @@
+﻿@model NL.Models.SampleAssay
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SampleAssay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Assay.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Assay.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sample.SampleID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sample.SampleID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

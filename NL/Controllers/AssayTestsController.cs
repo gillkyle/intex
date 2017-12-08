@@ -26,8 +26,21 @@ namespace NL.Controllers
             ViewBag.Desc = desc;
 
             return View();
+        }
 
+        public ActionResult TestResults(int? SampleID)
+        {
+            var TestResults = db.Database.SqlQuery<TestResult>(
+                    "SELECT SampleAssay.AssayID, Test.TestID, AssayTest.Active, AssayTest.Complete, AssayTest.QuantResults, AssayTest.QualResults, AssayTest.Approval, Assay.[Desc] " +
+                    "FROM SampleAssay INNER JOIN " +
+                    "    Assay ON SampleAssay.AssayID = Assay.AssayID INNER JOIN " +
+                    "    AssayTest ON Assay.AssayID = AssayTest.AssayID INNER JOIN " +
+                    "    Test ON AssayTest.TestID = Test.TestID " +
+                    "WHERE SampleID = " + SampleID 
+                ).ToList();
+            ViewBag.TestResults = TestResults;
 
+            return View();
         }
 
         // GET: AssayTests

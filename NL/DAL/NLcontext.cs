@@ -43,5 +43,7 @@ namespace NL.DAL
         public System.Data.Entity.DbSet<NL.Models.AssayReferences> AssayReferences { get; set; }
 
         public System.Data.Entity.DbSet<NL.Models.Sample> Samples { get; set; }
+
+        public System.Data.Entity.DbSet<NL.Models.SampleAssay> SampleAssays { get; set; }
     }
 }

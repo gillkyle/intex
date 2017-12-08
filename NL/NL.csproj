@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\ResponsesController.cs" />
+    <Compile Include="Controllers\SampleAssaysController.cs" />
     <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\WorkOrdersController.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\Test.cs" />
     <Compile Include="Models\TestMaterial.cs" />
+    <Compile Include="Models\TestResult.cs" />
     <Compile Include="Models\TestType.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WorkOrder.cs" />
@@ -359,7 +361,13 @@
     <Content Include="Views\Samples\Details.cshtml" />
     <Content Include="Views\Samples\Edit.cshtml" />
     <Content Include="Views\Samples\Index.cshtml" />
-    <Content Include="Views\WorkOrders\ThankYou.cshtml" />
+    <Content Include="Views\SampleAssays\Create.cshtml" />
+    <Content Include="Views\SampleAssays\Delete.cshtml" />
+    <Content Include="Views\SampleAssays\Details.cshtml" />
+    <Content Include="Views\SampleAssays\Edit.cshtml" />
+    <Content Include="Views\SampleAssays\Index.cshtml" />
+    <Content Include="Views\AssayTests\TestResults.cshtml" />
+    <Content Include="Views\WorkOrders\ErrorOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

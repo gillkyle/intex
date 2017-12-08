@@ -72,7 +72,7 @@ namespace NL.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,StartTime,Description,PriorityID")] WorkOrder workOrder)
+        public ActionResult Create([Bind(Include = "UserID,Description,PriorityID")] WorkOrder workOrder)
         {
             if (ModelState.IsValid)
             {
@@ -81,6 +81,7 @@ namespace NL.Controllers
                     "FROM BillDetail " +
                     "WHERE UserID = " + workOrder.UserID).First<int>();
 
+                workOrder.StartTime = DateTime.Now;
                 workOrder.BillID = BillID;
                 workOrder.UserID = workOrder.UserID;
                 workOrder.EarlyDate = workOrder.StartTime.AddDays(3);
@@ -106,6 +107,14 @@ namespace NL.Controllers
                   "FROM [User] " +
                   "WHERE UserEmail = '" + userEmail + "'").First<int>();
 
+            int RoleID = db.Database.SqlQuery<int>(
+              "SELECT TOP 1 RoleID " +
+                "FROM [User] " +
+               "WHERE UserEmail = '" + userEmail + "'").First<int>();
+            if (RoleID != 1)
+            {
+                return RedirectToAction("ErrorOrder");
+            }
 
             var userFullName = db.Database.SqlQuery<String>(
                   "SELECT TOP 1 UserFirstName + ' ' + UserLastName " +
@@ -196,6 +205,11 @@ namespace NL.Controllers
             db.WorkOrders.Remove(workOrder);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ErrorOrder()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

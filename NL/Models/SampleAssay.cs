@@ -13,9 +13,11 @@ namespace NL.Models
     public class SampleAssay
     {
         [Key, ForeignKey("Sample")]
+        [Column(Order = 0)]
         public int SampleID { get; set; }
         public virtual Sample Sample { get; set; }
         [Key, ForeignKey("Assay")]
+        [Column(Order = 1)]
         public int AssayID { get; set; }
         public virtual Assay Assay { get; set; }
         public String Comment { get; set; }
