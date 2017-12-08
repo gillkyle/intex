@@ -16,7 +16,6 @@
             <th>Approx. Cost</th>
             <th>Required</th>
             <th>Setup Time (min)</th>
-            <th>ID</th>
         </tr>
         @foreach (var AssayTest in ViewBag.AssayTests)
         {
@@ -28,13 +27,12 @@
                     {
                         <tr>
                             <td>@Test.Desc</td>
-                            <td>@Test.Quote</td>
+                            <td>$@Math.Round(Test.Quote, 2)</td>
                             <td>@{
                                 if (Test.Required == true) { <i style="color: mediumspringgreen" class="fa fa-check-circle-o"></i> }
                                 else
                                 { <i style="color: crimson"class="fa fa-times-circle-o"></i> } }</td>
                             <td>@Test.SetupTimeMins</td>
-                            <td>@Test.TestTypeID</td>
                         </tr>
                     }
                 }
